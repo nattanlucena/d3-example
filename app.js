@@ -193,11 +193,12 @@ SimpleGraph.prototype.update = function() {
 
     self.allPoints = self.points_max_weight.concat(self.points_min_weight);
     var circle = this.svg.select("svg").selectAll("circle")
-        .data(self.allPoints, function(d) {
-            return d;
-        });
+        .data(self.allPoints);
 
-    circle.enter().append("circle")
+
+    circle.enter()
+        .append("circle")
+        .attr('class', 'dot')
         .attr("class", function(d) {
             return d === self.selected ? "selected" : null;
         })
@@ -212,7 +213,9 @@ SimpleGraph.prototype.update = function() {
         .on('mouseover', function(d) {
             d3.select(d3.event.target).classed("highlight", true);
 
-            self.tooltip.transition() // declare the transition properties to bring fade-in div
+            self.tooltip
+                .transition()
+                .delay(200)// declare the transition properties to bring fade-in div
                 .duration(600) // it shall take 200ms
                 .style("opacity", 0.9); // and go all the way to an opacity of .9
 
@@ -226,7 +229,8 @@ SimpleGraph.prototype.update = function() {
         .on('mouseout', function(d) {
 
             d3.select(d3.event.target).classed("highlight", false);
-            self.tooltip.transition() // declare the transition properties to fade-out the div
+            self.tooltip.transition()
+                .delay(200)// declare the transition properties to fade-out the div
                 .duration(600) // it shall take 500ms
                 .style("opacity", 0); // and go all the way to an opacity of nil
 
@@ -267,7 +271,7 @@ SimpleGraph.prototype.datapoint_drag = function() {
 SimpleGraph.prototype.mousemove = function() {
     var self = this;
     return function() {
-        var p = d3.svg.mouse(self.svg[0][0]),
+        var p = d3.mouse(self.svg[0][0]),
             t = d3.event.changedTouches;
 
         if (self.dragged) {
@@ -440,7 +444,7 @@ SimpleGraph.prototype.xaxis_drag = function() {
     var self = this;
     return function(d) {
         document.onselectstart = function() { return false; };
-        var p = d3.svg.mouse(self.svg[0][0]);
+        var p = d3.mouse(self.svg[0][0]);
         self.downx = self.x.invert(p[0]);
     }
 };
@@ -449,7 +453,7 @@ SimpleGraph.prototype.yaxis_drag = function(d) {
     var self = this;
     return function(d) {
         document.onselectstart = function() { return false; };
-        var p = d3.svg.mouse(self.svg[0][0]);
+        var p = d3.mouse(self.svg[0][0]);
         self.downy = self.y.invert(p[1]);
     }
 };
