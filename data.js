@@ -1,0 +1,11 @@
+[{"hour": 8, "max_weight": 800, "min_weight": 500},
+ {"hour": 9, "max_weight": 600, "min_weight": 400},
+ {"hour": 10, "max_weight": 700, "min_weight": 200},
+ {"hour": 11, "max_weight": 800, "min_weight": 500},
+ {"hour": 12, "max_weight": 700, "min_weight": 500},
+ {"hour": 13, "max_weight": 500, "min_weight": 100},
+ {"hour": 14, "max_weight": 800, "min_weight": 500},
+ {"hour": 15, "max_weight": 900, "min_weight": 500},
+ {"hour": 16, "max_weight": 300, "min_weight": 50},
+ {"hour": 17, "max_weight": 900, "min_weight": 500},
+ {"hour": 18, "max_weight": 500, "min_weight": 400}]
